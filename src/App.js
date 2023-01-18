@@ -1,23 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import timezoneCityToCountry from './timezoneCityToCountry.json';
 
 function App() {
+  const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const tzArr = userTimezone.split("/");
+  const userRegion = tzArr[0];
+  const userCity = tzArr[tzArr.length - 1];
+  const userCountry = timezoneCityToCountry[userCity];
+
+  console.log("Timezone: ", userTimezone);
+  console.log("Region: ", userRegion);
+  console.log("Country: ", userCountry);
+  console.log("City: ", userCity);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+        Timezone: {userTimezone} <br/>
+        Region: {userRegion} <br/>
+        Country: {userCountry} <br/>
+        City: {userCity} 
+      </div>
     </div>
   );
 }
